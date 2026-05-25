@@ -587,8 +587,8 @@ p {
 }
 
 .subscribe-card {
-  background: var(--accent);
-  color: #ffffff;
+  background: var(--accent-soft);
+  color: #111111;
   padding: 4rem 2rem;
   border-radius: 32px;
   display: grid;
@@ -604,7 +604,7 @@ p {
   margin: 0;
   font-size: clamp(2rem, 2.8vw, 3rem);
   line-height: 1.05;
-  color: #ffffff;
+  color: #111111;
   max-width: 900px;
 }
 
@@ -753,5 +753,38 @@ p {
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .subscribe-card {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .subscribe-title {
+    font-size: 1.75rem;
+  }
+
+  .subscribe-input {
+    flex-direction: column;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .subscribe-input input {
+    background: #ffffff;
+    border-radius: 12px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .subscribe-input .subscribe-btn {
+    width: 100%;
+    margin: 0;
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  .subscribe-input .subscribe-btn:hover {
+    background: #ff8f44;
   }
 }
