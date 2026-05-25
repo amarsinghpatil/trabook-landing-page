@@ -706,8 +706,6 @@ p {
 }
 
 @media (max-width: 1100px) {
-  .hero-grid,
-  .testimonial-grid,
   .card-grid,
   .deals-grid,
   .plans-grid,
@@ -726,7 +724,6 @@ p {
   .header-inner,
   .footer-grid,
   .search-panel,
-  .subscribe-form {
   .subscribe-form,
   .card-grid,
   .deals-grid,
