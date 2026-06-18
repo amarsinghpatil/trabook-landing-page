@@ -1393,11 +1393,15 @@ p {
    WHAT PEOPLE SAY SECTION - START
    ===================================================== */
 
+/* People about us */
+/* Figma Specs: position: absolute; width: 1920px; height: 596px; left: 0px; top: 3576px; */
 .testimonial-section {
   background-color: var(--color-bg);
   width: 100%;
+  min-height: 596px;
   padding: 100px 24px;  
   overflow: hidden;
+  position: relative;
 }
 
 .testimonial-container {
@@ -1412,10 +1416,10 @@ p {
 /* Decorative airplane/globe element — top-right */
 .testimonial-element {
   position: absolute;
-  top: -20px;
-  right: 0;
-  width: 140px;
-  height: auto;
+  top: -70px;
+  right: -90px;
+  width: 168.56px;
+  height: 188.06px;
   pointer-events: none;
   display: none;
 }
@@ -1428,23 +1432,20 @@ p {
 
 /* ---- Left column ---- */
 .testimonial-left {
-  flex: 0 0 340px;
+  flex: 0 0 388px;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
+/* Heading */
+/* Figma Specs: position: absolute; width: 388px; height: 108px; left: 376px; top: 3696px; */
 .testimonial-title {
-  font-family: var(--font-heading);
+  font-family: 'Volkhov', serif;
   font-size: 48px;
   font-weight: 700;
   line-height: 54px;
-  color: var(--color-primary);
-  text-transform: lowercase;
-}
-
-/* Override lowercase for "What people say" line — keep it as-is */
-.testimonial-title {
+  color: #222222;
   text-transform: none;
 }
 
@@ -1505,6 +1506,10 @@ p {
   flex: 1;
   position: relative;
   min-height: 320px;
+  
+  /* CSS Variables to control the position of both cards simultaneously */
+  --cards-top: 28px;
+  --cards-left: 135px;
 }
 
 /* Decorative vector (small icon behind cards, top-right of cards area) */
@@ -1521,7 +1526,8 @@ p {
 /* Shared card styles */
 .testimonial-card {
   position: absolute;
-  width: 504px;
+  width: 541px;
+  height: 279px;
   border-radius: 10px;
   padding: 28px 34px 28px 34px;
   display: flex;
@@ -1529,29 +1535,33 @@ p {
   gap: 12px;
 }
 
-/* Front card (Mike Taylor) — white, shadow, avatar floats above */
-.testimonial-card--front {
-  background-color: var(--color-white);
-  box-shadow:
-    0px 1.852px 3.148px rgba(0,0,0,0),
-    0px 8.148px 6.519px rgba(0,0,0,0.01),
-    0px 20px 13px rgba(0,0,0,0.01),
-    0px 38.519px 25.481px rgba(0,0,0,0.01),
-    0px 64.815px 46.852px rgba(0,0,0,0.02),
-    0px 100px 80px rgba(0,0,0,0.02);
-  top: 34px;
-  left: 0;
+/* Client-1 (Mike Taylor) */
+/* Figma Specs: position: absolute; width: 504px; height: 245px; left: 927px; top: 3730px; */
+.testimonial-card--front,
+.testimonial-card-front {
+  background: #FFFFFF;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+  border-radius: 10px;
+  width: 504px;
+  height: 245px;
+  top: var(--cards-top);
+  left: var(--cards-left);
   z-index: 2;
   padding-top: 46px; /* extra room for avatar that floats above */
 }
 
-/* Back card (Chris Thomas) — border, slightly offset down-right */
-.testimonial-card--back {
+/* Client-2 (Chris Thomas) — border, offset down-right */
+/* Figma Specs: position: absolute; width: 502px; height: 232px; left: 977px; top: 3820px; */
+/* Back card is offset by exactly top + 90px and left + 50px */
+.testimonial-card--back,
+.testimonial-card-back {
   background-color: transparent;
   border: 2px solid rgba(102, 102, 102, 0.08);
   box-shadow: 0px 10px 30px 0px rgba(34, 34, 34, 0.35);
-  top: 90px;
-  left: 50px;
+  width: 502px;
+  height: 232px;
+  top: calc(var(--cards-top) + 90px);
+  left: calc(var(--cards-left) + 50px);
   z-index: 1;
   background-color: var(--color-bg);
 }
@@ -1594,6 +1604,8 @@ p {
 
 .testimonial-card__name--muted {
   opacity: 0.5;
+  margin-top: auto;
+  transform: translateY(15px);
 }
 
 /* Role / Location */
@@ -1607,10 +1619,15 @@ p {
 
 .testimonial-card__role--muted {
   opacity: 0.5;
+  transform: translateY(15px);
 }
 
 /* Responsive: stack columns on smaller screens */
 @media (max-width: 900px) {
+  .testimonial-section {
+    min-height: auto;
+  }
+
   .testimonial-container {
     flex-direction: column;
     align-items: flex-start;
@@ -1631,8 +1648,24 @@ p {
     max-width: 504px;
   }
 
+  .testimonial-card--front,
+  .testimonial-card-front {
+    left: 0;
+    top: 34px;
+    height: auto;
+  }
+
   .testimonial-card--back {
     left: 20px;
+    top: 90px;
+    width: 100%;
+    height: auto;
+  }
+
+  .testimonial-card__name--muted,
+  .testimonial-card__role--muted {
+    transform: none;
+    margin-top: 12px;
   }
 }
 
