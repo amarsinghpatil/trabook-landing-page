@@ -1,6 +1,5 @@
 # ✈️ Trabook - Travel Agency Landing Page
 
-A simple, responsive Travel Agency Landing Page built from a Figma design using pure HTML and CSS.
 
 ## 🎨 Features
 
