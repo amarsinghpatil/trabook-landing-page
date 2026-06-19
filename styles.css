@@ -59,6 +59,8 @@ body {
   background: var(--background-light);
   color: var(--text);
   min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 img {
@@ -359,132 +361,100 @@ a {
   white-space: nowrap; /* Ensures the text stays on one line */
 }
 
+/* Search Bar Container */
 .search-bar {
   width: min(841px, calc(100% - 2rem));
-  height: 124px;
   background: #FFFFFF;
   box-shadow: 0px 26px 75px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 0.5rem auto 4rem; /* Changed bottom margin to a positive 4rem to push the next section downward */
+  margin: 0.5rem auto 4rem;
   position: relative;
-  top: -48px; /* Shifted slightly upward */
+  top: -48px;
   z-index: 10;
-  grid-column: 1 / -1; /* Spans across all grid columns to maintain full width */
+  grid-column: 1 / -1;
 }
 
-.content {
-  display: flex;
+.search-bar .content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  padding: 32px 24px; /* Margins derived from Figma: top/bottom: 32px, left/right: 24px */
+  gap: 24px;
+  padding: 32px 24px;
   box-sizing: border-box;
- }
-
-.content-1 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
-  max-width: 528px;
-  height: 52px;
 }
 
-.content-2 {
-  position: absolute;
-  width: 592px; /* Combined width of Date, Guest, and Explore Button */
-  height: 52px;
-  left: 225px; /* Derived relative offset: 765px (Figma Left) - 540px (SearchBar Left) = 225px */
-  top: 36px;  /* Derived relative offset: 791px (Figma Top) - 755px (SearchBar Top) = 36px */
-}
-
-.content-3 {
-  position: absolute;
-  width: 126px;
-  height: 52px;
-  left: 201px; /* Derived relative offset relative to content-2: 966px - 765px = 201px */
-  top: 0;
-}
-
-.explore-btn {
-  position: absolute;
-  width: 165px;
-  height: 60px;
-  left: 427px; /* 652px (relative to search bar) - 225px (content-2 left) = 427px */
-  top: -4px;  /* 32px (relative to search bar) - 36px (content-2 top) = -4px */
-  background: #FA7436;
-  box-shadow: 0px 8px 16px rgba(250, 116, 54, 0.16);
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.explore-btn p {
-  position: absolute;
-  width: 109px;
-  height: 32px;
-  left: 28px;
-  top: 14px;
-
-  font-family: 'Poppins', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 32px;
-  color: #FFFFFF;
-}
-
-.location,
-.Date,
-.guest {
-  width: 126px;
-  height: 100%;
+/* Individual Search Field */
+.search-field {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative; /* Anchor for absolute children */
+  position: relative;
+  cursor: pointer;
 }
 
-.location p,
-.Date p,
-.guest p {
+.search-field-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.search-field-header p {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   color: #222222;
+  margin: 0;
 }
 
-.location-vector-icon,
-.date-vector-icon,
-.guest-vector-icon {
-  width: 84px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  gap: 5px; /* Spaces the chevron 5px to the right of text */
-}
-
-.vector-icon-1,
-.vector-icon-2,
-.vector-icon-3 {
+/* Chevron Icon */
+.vector-icon {
   width: 6px;
   height: 6px;
-  border-right: 2px solid #FA7436; /* Orange chevron color */
+  border-right: 2px solid #FA7436;
   border-bottom: 2px solid #FA7436;
-  transform: rotate(45deg); /* Rotates lines to form a downward arrow */
-  margin-top: -2px; /* Fine-tunes vertical center alignment with Poppins baseline */
+  transform: rotate(45deg);
+  margin-top: -2px;
+  flex-shrink: 0;
 }
 
-.location > p,
-.Date > p,
-.guest > p {
+.search-field-sub {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
   color: #666666;
-  margin-top: 10px; /* Figma: 825px (Subtitle Top) - 815px (Header Bottom) = 10px spacing */
-  white-space: nowrap; /* Forces the text to stay on a single line */
+  margin-top: 8px;
+  white-space: nowrap;
+}
+
+/* Explore Button */
+.explore-btn {
+  width: 165px;
+  height: 60px;
+  background: #FA7436;
+  box-shadow: 0px 8px 16px rgba(250, 116, 54, 0.16);
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.explore-btn:hover {
+  background-color: #e05e24;
+  transform: translateY(-1px);
+}
+
+.explore-btn p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: #FFFFFF;
+  margin: 0;
 }
 
 .btn {
@@ -550,7 +520,7 @@ input:focus-visible {
 .hero {
   padding: 5rem 0 2ch;
   background-color: var(--background-light);
-
+  overflow: hidden;
 }
 
 
@@ -1000,10 +970,9 @@ p {
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1024px) {
   .deals-grid {
-    grid-template-columns: repeat(4, 270px);
-    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -1309,8 +1278,7 @@ p {
 }
 @media (min-width: 1024px) {
   .vp-grid {
-    grid-template-columns: repeat(3, 370px);
-    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 /* Vacation plan card */
@@ -1528,6 +1496,15 @@ p {
   --cards-left: 135px;
 }
 
+@media (max-width: 1200px) and (min-width: 901px) {
+  .testimonial-right {
+    --cards-left: 40px;
+  }
+  .testimonial-card {
+    max-width: 440px;
+  }
+}
+
 /* Decorative vector (small icon behind cards, top-right of cards area) */
 .testimonial-vector {
   position: absolute;
@@ -1543,6 +1520,7 @@ p {
 .testimonial-card {
   position: absolute;
   width: 541px;
+  max-width: 100%;
   height: 279px;
   border-radius: 10px;
   padding: 28px 34px 28px 34px;
@@ -1559,6 +1537,7 @@ p {
   box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
   border-radius: 10px;
   width: 504px;
+  max-width: 100%;
   height: 245px;
   top: var(--cards-top);
   left: var(--cards-left);
@@ -1575,6 +1554,7 @@ p {
   border: 2px solid rgba(102, 102, 102, 0.08);
   box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.03);
   width: 502px;
+  max-width: 100%;
   height: 232px;
   top: calc(var(--cards-top) + 90px);
   left: calc(var(--cards-left) + 50px);
@@ -1727,8 +1707,14 @@ p {
 .blog-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
+}
+
+@media (min-width: 1024px) {
+  .blog-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* Individual blog card */
@@ -1792,12 +1778,7 @@ p {
   height: 12px;
 }
 
-/* Responsive: 2 columns on tablet, 1 on mobile */
-@media (max-width: 900px) {
-  .blog-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+/* Responsive: columns handled by base grid styles */
 
 @media (max-width: 560px) {
   .blog-grid {
@@ -2406,79 +2387,27 @@ p {
 
 /* Search Bar Responsiveness */
 @media (max-width: 840px) {
-  .search-bar {
-    height: auto;
+  .search-bar .content {
+    grid-template-columns: 1fr;
+    gap: 16px;
     padding: 24px;
-    top: 0;
-    margin: 2rem auto;
   }
 
-  .content {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 20px;
-    padding: 0;
-  }
-
-  .content-1 {
+  .search-field {
     width: 100%;
-    max-width: none;
-    height: auto;
-  }
-
-  .content-2 {
-    position: static;
-    width: 100%;
-    height: auto;
-    left: auto;
-    top: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .content-3 {
-    position: static;
-    width: 100%;
-    height: auto;
-    left: auto;
-    top: auto;
-  }
-
-  .location,
-  .Date,
-  .guest {
-    width: 100%;
-    height: auto;
-    padding: 16px;
+    padding: 12px 16px;
     border: 1px solid rgba(102, 102, 102, 0.12);
     border-radius: 8px;
     background-color: #fcfcfc;
   }
 
-  .location > p,
-  .Date > p,
-  .guest > p {
-    margin-top: 6px;
+  .search-field-sub {
+    margin-top: 4px;
   }
 
   .explore-btn {
-    position: static;
     width: 100%;
     height: 52px;
-    left: auto;
-    top: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .explore-btn p {
-    position: static;
-    width: auto;
-    height: auto;
-    text-align: center;
-    line-height: normal;
   }
 }
 
@@ -2499,6 +2428,22 @@ p {
   .subscribe-card__element,
   .subscribe-card__arcs {
     display: none;
+  }
+}
+
+/* Header navigation spacing tweaks for laptop views */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .header-actions {
+    gap: 1.5rem;
+    left: 0;
+  }
+  .Nav-Menu {
+    gap: 1.25rem;
+  }
+  .sign-up-btn {
+    width: 130px;
+    height: 44px;
+    padding: 8px 15px;
   }
 }
 
